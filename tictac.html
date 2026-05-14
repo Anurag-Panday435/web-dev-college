@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Tic Tac Toe UI</title>
+
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body{
+        height:100vh;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        background:#121212;
+    }
+
+    .game-box{
+        background:#1f1f1f;
+        padding:30px;
+        border-radius:20px;
+        box-shadow:0 0 25px rgba(0,0,0,0.5);
+        text-align:center;
+    }
+
+    .title{
+        color:white;
+        font-size:32px;
+        margin-bottom:25px;
+        letter-spacing:2px;
+    }
+
+    /* Top Buttons */
+    .top-buttons{
+        display:flex;
+        justify-content:space-between;
+        margin-bottom:20px;
+        gap:12px;
+    }
+
+    .btn{
+        flex:1;
+        padding:12px;
+        border:none;
+        border-radius:12px;
+        font-size:16px;
+        font-weight:bold;
+        cursor:pointer;
+        transition:0.3s;
+    }
+
+    .restart{
+        background:#ff4d4d;
+        color:white;
+    }
+
+    .restart:hover{
+        background:#ff6666;
+        transform:scale(1.05);
+    }
+
+    .new-game{
+        background:#4da6ff;
+        color:white;
+    }
+
+    .new-game:hover{
+        background:#66b3ff;
+        transform:scale(1.05);
+    }
+
+    .board{
+        display:grid;
+        grid-template-columns:repeat(3,120px);
+        grid-template-rows:repeat(3,120px);
+        gap:12px;
+    }
+
+    .cell{
+        background:#2b2b2b;
+        border-radius:15px;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        cursor:pointer;
+        transition:0.3s;
+    }
+
+    .cell:hover{
+        background:#353535;
+        transform:scale(1.03);
+    }
+
+    /* X Shape */
+    .x{
+        position:relative;
+        width:70px;
+        height:70px;
+    }
+
+    .x::before,
+    .x::after{
+        content:"";
+        position:absolute;
+        width:10px;
+        height:70px;
+        background:#ff4d4d;
+        border-radius:10px;
+        left:30px;
+    }
+
+    .x::before{
+        transform:rotate(45deg);
+    }
+
+    .x::after{
+        transform:rotate(-45deg);
+    }
+
+    /* O Shape */
+    .o{
+        width:70px;
+        height:70px;
+        border:10px solid #4da6ff;
+        border-radius:50%;
+    }
+
+    .footer{
+        margin-top:25px;
+        color:#bbbbbb;
+        font-size:18px;
+    }
+
+    /* Bottom Buttons */
+    .bottom-buttons{
+        margin-top:20px;
+        display:flex;
+        gap:12px;
+    }
+
+    .score{
+        background:#2ecc71;
+        color:white;
+    }
+
+    .score:hover{
+        background:#45d481;
+        transform:scale(1.05);
+    }
+
+    .exit{
+        background:#f39c12;
+        color:white;
+    }
+
+    .exit:hover{
+        background:#ffb133;
+        transform:scale(1.05);
+    }
+</style>
+</head>
+<body>
+
+<div class="game-box">
+
+    <div class="title">TIC TAC TOE</div>
+
+    <!-- Top Buttons -->
+    <div class="top-buttons">
+        <button class="btn restart">Restart</button>
+        <button class="btn new-game">New Game</button>
+    </div>
+
+    <!-- Game Board -->
+    <div class="board">
+
+        <div class="cell"><div class="x"></div></div>
+        <div class="cell"><div class="o"></div></div>
+        <div class="cell"><div class="x"></div></div>
+
+        <div class="cell"><div class="o"></div></div>
+        <div class="cell"><div class="x"></div></div>
+        <div class="cell"><div class="o"></div></div>
+
+        <div class="cell"><div class="x"></div></div>
+        <div class="cell"><div class="o"></div></div>
+        <div class="cell"><div class="x"></div></div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        Player X Turn
+    </div>
+
+    <!-- Bottom Buttons -->
+    <div class="bottom-buttons">
+        <button class="btn score">Score Board</button>
+        <button class="btn exit">Exit</button>
+    </div>
+
+</div>
+<script src ="tictac.js"></script>
+</body>
+</html>

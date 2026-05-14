@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tic Tac Toe</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#111;
+}
+
+.game{
+    text-align:center;
+}
+
+h1{
+    color:white;
+    margin-bottom:20px;
+}
+
+.board{
+    display:grid;
+    grid-template-columns:repeat(3,100px);
+    gap:10px;
+}
+
+button{
+    border:none;
+    cursor:pointer;
+}
+
+.cell{
+    width:100px;
+    height:100px;
+    font-size:40px;
+    font-weight:bold;
+    background:#222;
+    color:white;
+    border-radius:10px;
+    transition:0.3s;
+}
+
+.cell:hover{
+    background:#333;
+}
+
+.controls{
+    margin-top:20px;
+}
+
+.reset{
+    padding:12px 25px;
+    font-size:18px;
+    border-radius:10px;
+    background:#ff4d4d;
+    color:white;
+}
+
+.reset:hover{
+    background:#ff6666;
+}
+
+p{
+    color:white;
+    margin-top:15px;
+    font-size:20px;
+}
+
+</style>
+</head>
+<body>
+
+<section class="game">
+
+    <h1>TIC TAC TOE</h1>
+
+    <section class="board">
+
+        <button class="cell"></button>
+        <button class="cell"></button>
+        <button class="cell"></button>
+
+        <button class="cell"></button>
+        <button class="cell"></button>
+        <button class="cell"></button>
+
+        <button class="cell"></button>
+        <button class="cell"></button>
+        <button class="cell"></button>
+
+    </section>
+
+    <p>Player X Turn</p>
+
+    <section class="controls">
+        <button id="reset" class="reset">Restart Game</button>
+    </section>
+
+</section>
+<script src ="game2.js"></script>
+</body>
+</html>
