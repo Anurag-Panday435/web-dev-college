@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Live Location Tracker</title>
+
+  <style>
+
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body{
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(-45deg,#4facfe,#00f2fe,#43e97b,#38f9d7);
+      background-size: 400% 400%;
+      animation: bgMove 10s ease infinite;
+      font-family: Arial;
+      overflow: hidden;
+    }
+
+    @keyframes bgMove{
+      0%{
+        background-position: 0% 50%;
+      }
+      50%{
+        background-position: 100% 50%;
+      }
+      100%{
+        background-position: 0% 50%;
+      }
+    }
+
+    .box{
+      width: 420px;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(15px);
+      padding: 30px;
+      border-radius: 25px;
+      text-align: center;
+      box-shadow: 
+      0 0 20px rgba(255,255,255,0.4),
+      0 0 40px rgba(0,0,0,0.2);
+      border: 1px solid rgba(255,255,255,0.3);
+      animation: float 3s ease-in-out infinite;
+      transition: 0.4s;
+    }
+
+    .box:hover{
+      transform: scale(1.03);
+      box-shadow: 
+      0 0 30px rgba(255,255,255,0.6),
+      0 0 50px rgba(0,0,0,0.3);
+    }
+
+    @keyframes float{
+      0%{
+        transform: translateY(0px);
+      }
+      50%{
+        transform: translateY(-10px);
+      }
+      100%{
+        transform: translateY(0px);
+      }
+    }
+
+    h1{
+      margin-bottom: 25px;
+      color: white;
+      font-size: 32px;
+      text-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+
+    button{
+      padding: 14px 30px;
+      border: none;
+      background: linear-gradient(to right,#007bff,#00c6ff);
+      color: white;
+      border-radius: 12px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.4s;
+      font-weight: bold;
+      box-shadow: 0 5px 15px rgba(0,123,255,0.4);
+    }
+
+    button:hover{
+      transform: scale(1.08);
+      background: linear-gradient(to right,#0056b3,#0099ff);
+      box-shadow: 0 8px 25px rgba(0,123,255,0.6);
+    }
+
+    .info{
+      margin-top: 30px;
+      text-align: left;
+    }
+
+    .info h2{
+      margin-top: 15px;
+      font-size: 20px;
+      color: white;
+      background: rgba(255,255,255,0.15);
+      padding: 12px;
+      border-radius: 12px;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 0 10px rgba(255,255,255,0.1);
+      transition: 0.3s;
+    }
+
+    .info h2:hover{
+      transform: translateX(8px);
+      background: rgba(255,255,255,0.25);
+    }
+
+  </style>
+
+</head>
+<body>
+
+  <div class="box">
+
+    <h1>📍 Live Location Tracker</h1>
+
+    <button onclick="getLocation()">
+      Get My Location
+    </button>
+
+    <div class="info">
+
+      <h2 id="city">City :</h2>
+
+      <h2 id="area">Area :</h2>
+
+      <h2 id="state">State :</h2>
+
+      <h2 id="country">Country :</h2>
+
+      <h2 id="pincode">Pincode :</h2>
+
+    </div>
+
+  </div>
+
+  <script>
+
+    function getLocation(){
+
+      if(navigator.geolocation){
+
+        navigator.geolocation.getCurrentPosition(
+
+          async function(position){
+
+            let lat = position.coords.latitude;
+            let lon = position.coords.longitude;
+
+         
+            let response = await fetch(
+              `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`
+            );
+
+            let data = await response.json();
+
+            console.log(data);
+
+  
+            let city =
+              data.address.city ||
+              data.address.town ||
+              data.address.village ||
+              data.address.county ||
+              "Not Found";
+
+      
+            let area =
+              data.address.suburb ||
+              data.address.neighbourhood ||
+              data.address.hamlet ||
+              data.address.city_district ||
+              "Not Found";
+
+       
+            document.getElementById("city").innerText =
+            "City : " + city;
+
+            document.getElementById("area").innerText =
+            "Area : " + area;
+
+            document.getElementById("state").innerText =
+            "State : " + (data.address.state || "Not Found");
+
+            document.getElementById("country").innerText =
+            "Country : " + (data.address.country || "Not Found");
+
+            document.getElementById("pincode").innerText =
+            "Pincode : " + (data.address.postcode || "Not Found");
+
+          },
+
+          function(error){
+
+            alert("Please Allow Location Access");
+
+          }
+
+        );
+
+      }
+      else{
+
+        alert("Geolocation Not Supported");
+
+      }
+
+    }
+
+  </script>
+
+</body>
+</html>

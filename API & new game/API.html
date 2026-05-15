@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Search App</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#0f172a,#111827,#1e293b);
+    color:white;
+    overflow-x:hidden;
+}
+
+/* NAVBAR */
+
+nav{
+    width:100%;
+    padding:18px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(255,255,255,0.1);
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:bold;
+    background:linear-gradient(to right,#00f5ff,#00ff88);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+nav ul{
+    display:flex;
+    gap:25px;
+    list-style:none;
+}
+
+nav ul li{
+    cursor:pointer;
+    transition:0.3s;
+    font-size:17px;
+}
+
+nav ul li:hover{
+    color:#00f5ff;
+    transform:translateY(-2px);
+}
+
+/* SEARCH SECTION */
+
+.search-section{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    padding:70px 20px 40px;
+}
+
+.search-section h1{
+    font-size:55px;
+    margin-bottom:15px;
+    text-align:center;
+    background:linear-gradient(to right,#00f5ff,#00ff88);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.search-section p{
+    color:#cbd5e1;
+    margin-bottom:35px;
+    text-align:center;
+    font-size:18px;
+}
+
+.search-box{
+    width:100%;
+    max-width:750px;
+    display:flex;
+    align-items:center;
+    gap:15px;
+    background:rgba(255,255,255,0.08);
+    padding:15px;
+    border-radius:20px;
+    backdrop-filter:blur(8px);
+    box-shadow:0 0 25px rgba(0,255,255,0.15);
+}
+
+input{
+    flex:1;
+    padding:18px 20px;
+    border:none;
+    outline:none;
+    border-radius:14px;
+    background:#111827;
+    color:white;
+    font-size:18px;
+}
+
+input::placeholder{
+    color:#94a3b8;
+}
+
+button{
+    padding:17px 35px;
+    border:none;
+    border-radius:14px;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+    color:white;
+    background:linear-gradient(135deg,#00c6ff,#0072ff);
+    transition:0.4s;
+    box-shadow:0 0 20px rgba(0,198,255,0.4);
+}
+
+button:hover{
+    transform:translateY(-3px) scale(1.05);
+    box-shadow:0 0 30px rgba(0,198,255,0.8);
+}
+
+/* IMAGE SECTION */
+
+#list{
+    width:90%;
+    margin:40px auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+    padding-bottom:50px;
+}
+
+/* JS se aane wali images */
+
+#list img{
+    width:100%;
+    height:300px;
+    object-fit:cover;
+    border-radius:20px;
+    transition:0.4s;
+    cursor:pointer;
+    border:3px solid rgba(255,255,255,0.1);
+    box-shadow:0 10px 30px rgba(0,0,0,0.5);
+}
+
+#list img:hover{
+    transform:scale(1.05) rotate(1deg);
+    box-shadow:0 15px 40px rgba(0,255,255,0.4);
+}
+
+/* Glow background */
+
+.circle1,
+.circle2{
+    position:fixed;
+    border-radius:50%;
+    filter:blur(100px);
+    z-index:-1;
+}
+
+.circle1{
+    width:300px;
+    height:300px;
+    background:#00f5ff;
+    top:-100px;
+    left:-100px;
+}
+
+.circle2{
+    width:350px;
+    height:350px;
+    background:#7c3aed;
+    bottom:-120px;
+    right:-120px;
+}
+
+/* Responsive */
+
+@media(max-width:700px){
+
+    .search-section h1{
+        font-size:38px;
+    }
+
+    .search-box{
+        flex-direction:column;
+    }
+
+    button{
+        width:100%;
+    }
+
+    nav{
+        flex-direction:column;
+        gap:15px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+    <div class="circle1"></div>
+    <div class="circle2"></div>
+
+    <!-- NAVBAR -->
+
+    <nav>
+        <div class="logo"></div>
+
+        <ul>
+            <li>Home</li>
+            <li>Gallery</li>
+            <li>Trending</li>
+            <li>Explore</li>
+        </ul>
+    </nav>
+
+    <!-- SEARCH AREA -->
+
+    <section class="search-section">
+
+        <h1>Search Amazing Images</h1>
+
+        <p>Find beautiful wallpapers, nature, cars, anime and much more</p>
+
+        <div class="search-box">
+
+            <!-- INPUT SAME RAKHA -->
+
+            <input placeholder="Search images...">
+
+            <!-- BUTTON SAME RAKHA -->
+
+            <button>Search</button>
+
+        </div>
+
+    </section>
+
+    <!-- IMAGE LIST -->
+
+    <div id="list"></div>
+
+    <!-- JS FILE SAME -->
+
+    <script src="API.js"></script>
+
+</body>
+</html>

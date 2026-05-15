@@ -1,0 +1,83 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Premium Weather App</title>
+
+<link rel="stylesheet" href="weather.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="bg-animation"></div>
+
+<div class="container">
+
+    <div class="top">
+
+        <div class="logo">
+            WeatherX
+        </div>
+
+        <button id="themeBtn">🌙</button>
+
+    </div>
+
+    <div class="search-box">
+
+        <input type="text" placeholder="Search city..." id="city">
+
+        <button id="searchBtn">
+            Search
+        </button>
+
+        <button id="locationBtn">
+            📍
+        </button>
+
+    </div>
+
+    <div class="weather-box">
+
+        <div class="loader" id="loader"></div>
+
+        <div class="weather-image">
+            <img
+            id="weatherIcon"
+            src="https://cdn-icons-png.flaticon.com/512/869/869869.png">
+        </div>
+
+        <h1 id="temp">--°C</h1>
+
+        <h2 id="cityName">City Name</h2>
+
+        <p id="condition">Weather Condition</p>
+
+        <div class="details">
+
+            <div class="card">
+                <h3>Humidity</h3>
+                <p id="humidity">0%</p>
+            </div>
+
+            <div class="card">
+                <h3>Wind</h3>
+                <p id="wind">0 km/h</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="weather.js"></script>
+
+</body>
+</html>
